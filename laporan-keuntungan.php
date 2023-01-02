@@ -16,9 +16,11 @@
 
 <body>
     <?php
-    include 'action/connection.php';
+        include 'action/connection.php';
 
-    $data = $conn->query('SELECT * FROM `tbl_keuntungan`');
+        $data = $conn->query('SELECT * FROM `tbl_transaksi`');
+        
+        $keuntungan_total = 0;
     ?>
     <header>
         <!-- Nav Bootstrap -->
@@ -67,17 +69,32 @@
                     <tbody>
                     <?php foreach ($data as $key => $dt) : ?>
                         <tr>
-                            <td><?= $dt['tanggal'] ?></td>
-                            <td>Dari mana?</td>
-                            <td>Total pembayaran pada hari tertentu</td>
-                            <td>Rp. <?= number_format($dt['keuntungan_harian'], 0, ",", ".") ?></td>
+                            <td>
+                                <?= $dt['tanggal'] ?>
+                            </td>
+                            <td>
+                                <?= $dt['total_modal'] ?>
+                            </td>
+                            <td>
+                                <?= $dt['grand_total'] ?>
+                            </td>
+                            <td>
+                                <?php $hasil_penjualan = $dt['grand_total'] - $dt['total_modal'];
+                                $keuntungan_total += $hasil_penjualan; ?>
+                                Rp. <?= number_format($hasil_penjualan, 0, ",", ".") ?>
+                                
+                            </td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="3">Total Keuntungan</th>
-                            <th>Rp .</th>
+                            <th colspan="3">
+                                Total Keuntungan
+                            </th>
+                            <th> 
+                                Rp. <?php echo number_format($keuntungan_total, 0, ",", ".") ?>
+                            </th>
                         </tr>
                     </tfoot>
                 </table>
