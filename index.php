@@ -15,11 +15,25 @@
 </head>
 
 <body>
-<?php
+    <?php
     $x = "Username atau Password Salah !";
     if (isset($_GET['pesan'])) {
-        if ($_GET['pesan'] == "gagal") {
+        if ($_GET['pesan'] == "x") {
             echo "<script type='text/javascript'>alert('$x');</script>";
+        }
+    }
+    $y = "Berhasil Login !";
+    if (isset($_GET['pesan'])) {
+        if ($_GET['pesan'] == "y") {
+            echo "<script type='text/javascript'>alert('$y');</script>";
+            header("location:home.php");
+        }
+    }
+    $n = "Berhasil Logout !";
+    if (isset($_GET['pesan'])) {
+        if ($_GET['pesan'] == "n") {
+            echo "<script type='text/javascript'>alert('$n');</script>";
+            header("location:index.php");
         }
     }
     ?>
@@ -39,7 +53,7 @@
                     <img id="img" src="assets/img/login.jpg" class="img-fluid">
                 </div>
                 <div class="col-md-8 col-lg-6 col-xl-3 offset-xl-1">
-                    <form action="action/cek_login.php" method="post">
+                    <form action="cek_login.php" method="post">
                         <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                             <p id="sub" class="mb-0 me-3">Log in Your Account</p><br><br><br><br>
                         </div>

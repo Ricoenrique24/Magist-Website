@@ -5,28 +5,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stok Management</title>
+    <title>Laporan Keuntungan</title>
     <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/laporan-keuntungan.css">
+    <link rel="stylesheet" href="assets/css/laporan.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    </head>
+    <style>
+        .intro {
+            height: 100%;
+        }
+
+        table.table tr th,
+        table.table tr td {
+            padding: 12px 50px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        table.table td a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #25A0E2;
+        }
+
+        thead th {
+            color: #fff;
+        }
+
+        .card {
+            border-radius: .5rem;
+        }
+
+        .table-scroll {
+            border-radius: .5rem;
+        }
+
+        .table-scroll table thead th {
+            font-size: 1.25rem;
+        }
+
+        thead {
+            top: 0;
+            position: sticky;
+        }
+    </style>
+</head>
 
 <body>
     <?php
-        include 'action/connection.php';
+    include 'connection.php';
 
-        //SQL Syntax
-        $date = $conn->query("SELECT DISTINCT (`tanggal`) FROM `tbl_transaksi`;");
-        $total_keuntungan = 0;
+    //SQL Syntax
+    $date = $conn->query("SELECT `tanggal` FROM `tbl_transaksi`;");
+    $total_keuntungan = 0;
 
-        //echo '<pre>';
-        //print_r($data);
-        //echo '</pre>';
+    //echo '<pre>';
+    //print_r($data);
+    //echo '</pre>';
     ?>
-
     <header>
         <!-- Nav Bootstrap -->
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -40,15 +79,11 @@
                         <li id="nav-item" class="nav-item">
                             <a class="nav-link" href="stok.php">Stok Management</a>
                         </li>
-                        <li id="nav-item" class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Laporan
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="laporan-transaksi.php">Laporan Transaksi</a></li>
-                                <li><a class="dropdown-item" href="laporan-keuntungan.php">Laporan Keuntungan</a></li>
-                                <li><a class="dropdown-item" href="#">Hutang Piutang</a></li>
-                            </ul>
+                        <li id="nav-item" class="nav-item">
+                            <a class="nav-link" href="laporan-transaksi.php">Laporan Transaksi</a>
+                        </li>
+                        <li id="nav-item" class="nav-item">
+                            <a class="nav-link" href="laporan-keuntungan.php" style="color: #03A9F4;">Laporan Keuntungan</a>
                         </li>
                     </ul>
                 </div>
@@ -58,60 +93,68 @@
             </div>
         </nav>
     </header>
-          
     <section class="vh-100">
         <div class="container container-fluid" id="container">
-            <p class="judul">LAPORAN KEUNTUNGAN</p>
-                <table class="demo-table" >
-                    <thead>
-                        <tr>
-                            <th>Tanggal</th>
-                            <th>Modal Pembelian</th>
-                            <th>Hasil Penjualan</th>
-                            <th>Keuntungan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Ambil data tanggal dahulu -->
-                        <?php foreach ($date as $key => $tgl) : ?>
-                            <?php
-                                $data = $conn->query("SELECT SUM(`total_modal`), SUM(`grand_total`)
-                                FROM `tbl_transaksi` WHERE `tanggal` = '" . $tgl['tanggal'] . "';");
-                            ?>
-                                <!-- Ambil Jumlah  -->
-                                <?php foreach ($data as $key => $dt) : ?>
-                                <tr>
-                                    <td>
-                                        <?= $tgl['tanggal'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $dt['SUM(`total_modal`)'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $dt['SUM(`grand_total`)'] ?>
-                                    </td>
-                                    <td>
-                                        <?php
-                                            $keuntungan = $dt['SUM(`grand_total`)'] - $dt['SUM(`total_modal`)'];
-                                            $total_keuntungan += $keuntungan;
-                                        ?>
-                                        <?= $keuntungan ?>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-			            <?php endforeach ?>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="3">
-                                Total Keuntungan
-                            </th>
-                            <th> 
-                                Rp. <?php echo number_format($total_keuntungan, 0, ",", ".") ?>
-                            </th>
-                        </tr>
-                    </tfoot>
-                </table>
+            <section class="intro">
+                <div class="bg-image h-100" style="background-color: #f5f7fa;">
+                    <div class="mask d-flex align-items-center h-100">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body p-0">
+                                            <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 335px">
+                                                <table class="table table-striped">
+                                                    <thead style="background-color: #25A0E2;">
+                                                        <tr>
+                                                            <th scope="col">Tanggal</th>
+                                                            <th scope="col">Modal Pembelian</th>
+                                                            <th scope="col">Hasil Penjualan</th>
+                                                            <th scope="col">Keuntungan</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Ambil data tanggal dahulu -->
+                                                        <?php foreach ($date as $key => $tgl) : ?>
+                                                            <?php
+                                                            $data = $conn->query("SELECT SUM(`total_modal`), SUM(`grand_total`) FROM `tbl_transaksi` WHERE `tanggal` = '" . $tgl['tanggal'] . "';");
+                                                            ?>
+                                                            <!-- Ambil Jumlah  -->
+                                                            <?php foreach ($data as $key => $dt) : ?>
+                                                                <tr>
+                                                                    <td><?= $tgl['tanggal'] ?></td>
+                                                                    <td><?= $dt['SUM(`total_modal`)'] ?></td>
+                                                                    <td><?= $dt['SUM(`grand_total`)'] ?></td>
+                                                                    <td><?php
+                                                                        $keuntungan = $dt['SUM(`grand_total`)'] - $dt['SUM(`total_modal`)'];
+                                                                        $total_keuntungan += $keuntungan;
+                                                                        ?>
+                                                                        <?= $keuntungan ?></td>
+                                                                </tr>
+                                                            <?php endforeach; ?>
+                                                        <?php endforeach ?>
+                                                    </tbody>
+                                                    <tfoot>
+                                                        <tr style="background-color: #25A0E2; color: #fff;">
+                                                            <th colspan="3">
+                                                                Total Keuntungan
+                                                            </th>
+                                                            <th>
+                                                                Rp. <?php echo number_format($total_keuntungan, 0, ",", ".") ?>
+                                                            </th>
+                                                        </tr>
+                                                        </tr>
+                                                    </tfoot>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
         <!-- Footer -->
         <div class="footer container">

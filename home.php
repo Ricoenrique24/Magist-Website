@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,10 +12,8 @@
     <!-- Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
-    <script>
-        alert('Login Berhasil !');
-    </script>
     <header>
         <!-- Nav Bootstrap -->
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -24,7 +23,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav" id="menu" >
+                    <ul class="navbar-nav" id="menu">
                         <li id="nav-item" class="nav-item">
                             <a class="nav-link" href="stok.php">Stok Management</a>
                         </li>
@@ -33,15 +32,14 @@
                                 Laporan
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Laporan Transaksi</a></li>
-                            <li><a class="dropdown-item" href="#">Laporan Keuntungan</a></li>
-                            <li><a class="dropdown-item" href="#">Hutang Piutang</a></li>
+                                <li><a class="dropdown-item" href="laporan-transaksi.php">Laporan Transaksi</a></li>
+                                <li><a class="dropdown-item" href="laporan-keuntungan.php">Laporan Keuntungan</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
                 <button class="login" type="button" class="btn btn-lg">
-                    <a href="index.php">Logout</a>
+                    <a href="logout.php">Logout</a>
                 </button>
             </div>
         </nav>
@@ -133,4 +131,5 @@
     <!-- Javascript -->
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
