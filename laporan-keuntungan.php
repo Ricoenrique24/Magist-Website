@@ -18,10 +18,15 @@
     <?php
         include 'action/connection.php';
 
-        $data = $conn->query('SELECT * FROM `tbl_transaksi`');
-        
-        $keuntungan_total = 0;
+        //SQL Syntax
+        $date = $conn->query("SELECT `tanggal` FROM `tbl_transaksi`;");
+        $total_keuntungan = 0;
+
+        //echo '<pre>';
+        //print_r($data);
+        //echo '</pre>';
     ?>
+
     <header>
         <!-- Nav Bootstrap -->
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -67,25 +72,34 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($data as $key => $dt) : ?>
-                        <tr>
-                            <td>
-                                <?= $dt['tanggal'] ?>
-                            </td>
-                            <td>
-                                <?= $dt['total_modal'] ?>
-                            </td>
-                            <td>
-                                <?= $dt['grand_total'] ?>
-                            </td>
-                            <td>
-                                <?php $hasil_penjualan = $dt['grand_total'] - $dt['total_modal'];
-                                $keuntungan_total += $hasil_penjualan; ?>
-                                Rp. <?= number_format($hasil_penjualan, 0, ",", ".") ?>
-                                
-                            </td>
-                        </tr>
-                    <?php endforeach; ?>
+                        <!-- Ambil data tanggal dahulu -->
+                        <?php foreach ($date as $key => $tgl) : ?>
+                            <?php
+                                $data = $conn->query("SELECT SUM(`total_modal`), SUM(`grand_total`)
+                                FROM `tbl_transaksi` WHERE `tanggal` = '" . $tgl['tanggal'] . "';");
+                            ?>
+                                <!-- Ambil Jumlah  -->
+                                <?php foreach ($data as $key => $dt) : ?>
+                                <tr>
+                                    <td>
+                                        <?= $tgl['tanggal'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $dt['SUM(`total_modal`)'] ?>
+                                    </td>
+                                    <td>
+                                        <?= $dt['SUM(`grand_total`)'] ?>
+                                    </td>
+                                    <td>
+                                        <?php
+                                            $keuntungan = $dt['SUM(`grand_total`)'] - $dt['SUM(`total_modal`)'];
+                                            $total_keuntungan += $keuntungan;
+                                        ?>
+                                        <?= $keuntungan ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+			            <?php endforeach ?>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -93,7 +107,7 @@
                                 Total Keuntungan
                             </th>
                             <th> 
-                                Rp. <?php echo number_format($keuntungan_total, 0, ",", ".") ?>
+                                Rp. <?php echo number_format($total_keuntungan, 0, ",", ".") ?>
                             </th>
                         </tr>
                     </tfoot>
