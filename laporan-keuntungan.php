@@ -19,7 +19,7 @@
         include 'action/connection.php';
 
         //SQL Syntax
-        $date = $conn->query("SELECT `tanggal` FROM `tbl_transaksi`;");
+        $date = $conn->query("SELECT DISTINCT (`tanggal`) FROM `tbl_transaksi`;");
         $total_keuntungan = 0;
 
         //echo '<pre>';
