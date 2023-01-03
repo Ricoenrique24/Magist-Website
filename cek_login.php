@@ -9,7 +9,7 @@ $cek = mysqli_num_rows($data);
 if ($cek > 0) {
     $_SESSION['user'] = $user;
     $_SESSION['status'] = "login";
-    header("location:index.php?pesan=y");
+    header("location:home.php?pesan=y");
 } else {
     if ($cek['user' && 'pass'] == NULL) {
         header("location:index.php?pesan=x");

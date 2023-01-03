@@ -6,15 +6,203 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stok Management</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="assets/css/stok.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&display=swap');
+
+        * {
+            font-family: 'Rubik', sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --main: #47B1FF;
+            --second: #FFFFFF;
+            --bg: #f1f1f1;
+            --font: #292E32;
+        }
+
+        ::selection {
+            color: var(--main);
+            background: var(--second);
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .container {
+            padding-top: 150px;
+            margin: auto;
+            width: 100%;
+        }
+
+        #container {
+            padding-bottom: 40px;
+        }
+
+
+        header {
+            background: var(--second);
+            box-shadow: 0 4px 14px rgba(41, 125, 252, 0.199);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 200;
+        }
+
+        #nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 0;
+            text-decoration: none;
+        }
+
+        #sub {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--font);
+        }
+
+        #logo {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--main);
+        }
+
+        #logo span {
+            color: var(--font);
+        }
+
+        .login {
+            padding: 8px 14px;
+            text-transform: uppercase;
+            font-weight: 500;
+            border: var(--second) solid 1px;
+            border-radius: 4px;
+            background: var(--main);
+            color: var(--second);
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+        }
+
+        .login a {
+            text-decoration: none;
+            color: #FFFFFF;
+        }
+
+        .login:hover {
+            border: var(--main) solid 1px;
+            background: var(--second);
+            color: var(--main);
+            transition: 0.3s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -ms-transition: 0.3s;
+            -o-transition: 0.3s;
+        }
+
+
+        /* Modal styles */
+        #bm {
+            background-color: var(--main);
+            color: white;
+        }
+
+        .modal .modal-dialog {
+            max-width: 400px;
+        }
+
+        .modal .modal-header,
+        .modal .modal-body,
+        .modal .modal-footer {
+            padding: 20px 30px;
+        }
+
+        .modal .modal-content {
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .modal .modal-footer {
+            background: #ecf0f1;
+            border-radius: 0 0 3px 3px;
+        }
+
+        .modal .modal-title {
+            display: inline-block;
+        }
+
+        .modal .form-control {
+            border-radius: 2px;
+            box-shadow: none;
+            border-color: #dddddd;
+        }
+
+        .modal textarea.form-control {
+            resize: vertical;
+        }
+
+        .modal .btn {
+            border-radius: 2px;
+            min-width: 100px;
+        }
+
+        .modal form label {
+            font-weight: normal;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 0;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            color: var(--font);
+        }
+
+        .social {
+            display: flex;
+            align-items: center;
+            column-gap: 1rem;
+        }
+
+        .social .bx {
+            color: var(--font);
+            font-size: 2rem;
+        }
+
+        .social .bx:hover {
+            color: var(--main);
+        }
+
+        .divider:after,
+        .divider:before {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #eee;
+        }
+
         .table-title {
-            background: #25A0E2;
+            background: var(--main);
             color: #fff;
             padding: 15px 30px;
             min-width: 100%;
@@ -95,7 +283,7 @@
         }
 
         /* Custom checkbox */
-        .custom-checkbox {
+        /* .custom-checkbox {
             padding-left: 15px;
             float: right;
         }
@@ -139,8 +327,8 @@
         }
 
         .custom-checkbox input[type="checkbox"]:checked+label:before {
-            border-color: #03A9F4;
-            background: #03A9F4;
+            border-color: var(--main);
+            background: var(--main);
         }
 
         .custom-checkbox input[type="checkbox"]:checked+label:after {
@@ -152,7 +340,7 @@
             cursor: auto;
             box-shadow: none;
             background: #ddd;
-        }
+        } */
     </style>
 </head>
 
@@ -169,7 +357,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav" id="menu">
                         <li id="nav-item" class="nav-item">
-                            <a class="nav-link" href="stok.php" style="color: #03A9F4;" >Stok Management</a>
+                            <a class="nav-link" href="stok.php" style="font-weight: bold; color: var(--main);">Stok Management</a>
                         </li>
                         <li id="nav-item" class="nav-item">
                             <a class="nav-link" href="laporan-transaksi.php">Laporan Transaksi</a>
@@ -351,8 +539,8 @@
         <div class="footer container">
             <p>&copy; Copyright TreeAce X POLIJE Kampus Sidoarjo</p>
             <div class="social">
-                <a href="#"><i class='bx bxl-facebook-square'></i></a>
-                <a href="#"><i class='bx bxl-instagram-alt'></i></a>
+                <a href="https://www.facebook.com/Marzuki.AkmaLL"><i class='bx bxl-facebook-square'></i></a>
+                <a href="https://www.instagram.com/marzuki_akmal/"><i class='bx bxl-instagram-alt'></i></a>
             </div>
         </div>
     </section>
