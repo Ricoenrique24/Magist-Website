@@ -180,7 +180,7 @@
     if (isset($_GET['pesan'])) {
         if ($_GET['pesan'] == "n") {
             echo "<script type='text/javascript'>alert('$n');</script>";
-            header("location:index.php");
+            // header("location:index.php");
         }
     }
     ?>

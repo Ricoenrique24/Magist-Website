@@ -73,6 +73,19 @@
             text-decoration: none;
         }
 
+        #nav-item {
+            padding-right: 30px;
+            font-weight: bold;
+        }
+
+        #nav-item a:hover {
+            color: var(--second);
+        }
+
+        header.shadow #nav-item a:hover {
+            color: var(--main);
+        }
+
         header.shadow {
             background: white;
             box-shadow: 0 4px 14px hsl(0 4% 14% / 10%);
@@ -104,18 +117,18 @@
         }
 
         .login {
-            padding: 8px 14px;
+            font-size: 16px;
             background: var(--main);
         }
 
         .login a {
             text-decoration: none;
-            color: black;
+            color: var(--second);
             font-weight: bold;
         }
 
         .login a:hover {
-            color: var(--second);
+            color: black;
             transition: 0.3s;
             -webkit-transition: 0.3s;
             -moz-transition: 0.3s;
@@ -123,9 +136,9 @@
             -o-transition: 0.3s;
         }
 
-        header.shadow #l a {
-            text-decoration: none;
-            color: var(--second);
+        header.shadow .login {
+            background-color: var(--second);
+            color: black;
             font-weight: bold;
             transition: 2s;
             -webkit-transition: 1.5s;
@@ -134,9 +147,23 @@
             -o-transition: 1.5s;
         }
 
-        #nav-item {
-            padding-right: 30px;
+        header.shadow .login a:hover {
+            color: var(--main);
+            transition: 0.3s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -ms-transition: 0.3s;
+            -o-transition: 0.3s;
+        }
+
+        header.shadow .login a {
+            color: black;
             font-weight: bold;
+            transition: 2s;
+            -webkit-transition: 1.5s;
+            -moz-transition: 1.5s;
+            -ms-transition: 1.5s;
+            -o-transition: 1.5s;
         }
 
         .home {
@@ -291,7 +318,7 @@
     if (isset($_GET['pesan'])) {
         if ($_GET['pesan'] == "y") {
             echo "<script type='text/javascript'>alert('$y');</script>";
-            header("location:home.php");
+            // header("location:home.php");
         }
     }
     ?>
@@ -316,9 +343,9 @@
                         </li>
                     </ul>
                 </div>
-                <button id="l" type="button" class="btn login btn-lg">
+                <div id="l" class="login">
                     <a href="logout.php">Logout</a>
-                </button>
+                </div>
             </div>
         </nav>
     </header>

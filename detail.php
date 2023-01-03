@@ -43,80 +43,68 @@
 		}
 
 		.container {
-			max-width: 1068px;
-			margin: auto;
-			width: 100%;
-		}
+            max-width: 1068px;
+            width: 100%;
+        }
 
-		#container {
-			padding-top: 150px;
-			padding-bottom: 40px;
-		}
+        #container {
+            padding-top: 150px;
+            padding-bottom: 30px;
+        }
 
+        header {
+            background: var(--second);
+            box-shadow: 0 4px 14px rgba(41, 125, 252, 0.199);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 200;
+        }
 
-		header {
-			background: var(--second);
-			box-shadow: 0 4px 14px rgba(41, 125, 252, 0.199);
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			z-index: 200;
-		}
+        #nav {
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 0;
+            text-decoration: none;
+        }
 
-		#nav {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 18px 0;
-			text-decoration: none;
-		}
+        #nav-item {
+            padding-right: 30px;
+            font-weight: bold;
+        }
 
-		#sub {
-			font-size: 2rem;
-			font-weight: 600;
-			color: var(--font);
-		}
+        #nav-item a:hover {
+            color: var(--main);
+        }
 
-		#logo {
-			font-size: 2rem;
-			font-weight: 600;
-			color: var(--main);
-		}
+        #logo {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--main);
+            padding-right: 185px;
+        }
 
-		#logo span {
-			color: var(--font);
-		}
+        #logo span {
+            color: var(--font);
+        }
 
-		.login {
-			padding: 8px 14px;
-			text-transform: uppercase;
-			font-weight: 500;
-			border: var(--second) solid 1px;
-			border-radius: 4px;
-			background: var(--main);
-			color: var(--second);
-			-webkit-border-radius: 4px;
-			-moz-border-radius: 4px;
-			-ms-border-radius: 4px;
-			-o-border-radius: 4px;
-		}
+        .login a {
+            font-size: 16px;
+            background: var(--second);
+            text-decoration: none;
+            color: var(--main);
+            font-weight: bold;
+        }
 
-		.login a {
-			text-decoration: none;
-			color: #FFFFFF;
-		}
-
-		.login:hover {
-			border: var(--main) solid 1px;
-			background: var(--second);
-			color: var(--main);
-			transition: 0.3s;
-			-webkit-transition: 0.3s;
-			-moz-transition: 0.3s;
-			-ms-transition: 0.3s;
-			-o-transition: 0.3s;
-		}
+        .login a:hover {
+            color: black;
+            transition: 0.3s;
+            -webkit-transition: 0.3s;
+            -moz-transition: 0.3s;
+            -ms-transition: 0.3s;
+            -o-transition: 0.3s;
+        }
 
 		.intro {
 			height: 100%;
@@ -220,9 +208,9 @@
 						</li>
 					</ul>
 				</div>
-				<button class="login" type="button" class="btn btn-lg">
-					<a href="logout.php">Logout</a>
-				</button>
+				<div id="l" class="login">
+                    <a href="logout.php">Logout</a>
+                </div>
 			</div>
 		</nav>
 	</header>
