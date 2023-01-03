@@ -176,13 +176,6 @@
             echo "<script type='text/javascript'>alert('$x');</script>";
         }
     }
-    $y = "Berhasil Login !";
-    if (isset($_GET['pesan'])) {
-        if ($_GET['pesan'] == "y") {
-            echo "<script type='text/javascript'>alert('$y');</script>";
-            header("location:home.php");
-        }
-    }
     $n = "Berhasil Logout !";
     if (isset($_GET['pesan'])) {
         if ($_GET['pesan'] == "n") {
@@ -214,12 +207,12 @@
 
                         <!-- Username input -->
                         <div class="form-outline mb-4">
-                            <input type="text" name="user" id="user" class="form-control form-control-lg" placeholder="Masukkan Username Anda" />
+                            <input type="text" name="username" class="form-control form-control-lg" placeholder="Masukkan Username Anda" />
                         </div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-3">
-                            <input type="password" name="pass" id="pass" class="form-control form-control-lg" placeholder="Masukkan Password Anda" />
+                            <input type="password" name="password" class="form-control form-control-lg" placeholder="Masukkan Password Anda" />
                         </div>
 
                         <div class="text-center text-lg-start mt-4 pt-2">

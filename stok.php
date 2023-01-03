@@ -219,6 +219,7 @@
         }
 
         .table-title .btn {
+            padding-right: 50px;
             color: whitesmoke;
             float: right;
             font-size: 13px;
@@ -244,7 +245,7 @@
         table.table tr th,
         table.table tr td {
             border-color: white;
-            padding: 12px 50px;
+            padding: 12px 40px;
             vertical-align: middle;
         }
 

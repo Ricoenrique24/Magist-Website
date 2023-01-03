@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html lang="en">
+
 
 <head>
     <meta charset="UTF-8">
@@ -66,16 +68,15 @@
 
         #nav {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            padding: 18px 0;
+            padding: 25px 0;
             text-decoration: none;
         }
 
         header.shadow {
             background: white;
             box-shadow: 0 4px 14px hsl(0 4% 14% / 10%);
-            transition: 1.5s;
+            transition: 2s;
             -webkit-transition: 1.5s;
             -moz-transition: 1.5s;
             -ms-transition: 1.5s;
@@ -84,7 +85,7 @@
 
         header.shadow #logo {
             color: var(--main);
-            transition: 1.5s;
+            transition: 2s;
             -webkit-transition: 1.5s;
             -moz-transition: 1.5s;
             -ms-transition: 1.5s;
@@ -95,7 +96,7 @@
             font-size: 2rem;
             font-weight: 600;
             color: var(--second);
-            padding-right: 310px;
+            padding-right: 185px;
         }
 
         #logo span {
@@ -104,27 +105,17 @@
 
         .login {
             padding: 8px 14px;
-            text-transform: uppercase;
-            font-weight: 500;
-            border: var(--second) solid 1px;
-            border-radius: 4px;
             background: var(--main);
-            color: var(--second);
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            -ms-border-radius: 4px;
-            -o-border-radius: 4px;
         }
 
         .login a {
             text-decoration: none;
-            color: #FFFFFF;
+            color: black;
+            font-weight: bold;
         }
 
-        .login:hover {
-            border: var(--main) solid 1px;
-            background: var(--second);
-            color: var(--main);
+        .login a:hover {
+            color: var(--second);
             transition: 0.3s;
             -webkit-transition: 0.3s;
             -moz-transition: 0.3s;
@@ -132,16 +123,25 @@
             -o-transition: 0.3s;
         }
 
+        header.shadow #l a {
+            text-decoration: none;
+            color: var(--second);
+            font-weight: bold;
+            transition: 2s;
+            -webkit-transition: 1.5s;
+            -moz-transition: 1.5s;
+            -ms-transition: 1.5s;
+            -o-transition: 1.5s;
+        }
+
         #nav-item {
-            color: white;
-            padding: 10px;
-            font-size: 14px;
-            font-weight: 500;
+            padding-right: 30px;
+            font-weight: bold;
         }
 
         .home {
             width: 100%;
-            min-height: 540px;
+            height: 390px;
             background: var(--main);
             box-shadow: 0 4px 14px rgba(57, 130, 255, 0.169);
             display: grid;
@@ -251,34 +251,50 @@
         }
 
         .footer {
+            background-color: var(--main);
             display: flex;
             justify-content: space-between;
-            padding: 30px 0;
+        }
+
+        .footer-container {
+            padding-left: 100px;
+            padding-right: 100px;
+            padding-bottom: 50px;
         }
 
         .footer p {
             font-size: 0.9rem;
-            color: var(--font);
+            color: var(--second);
         }
 
         .social {
+            background-color: var(--main);
             display: flex;
             align-items: center;
             column-gap: 1rem;
         }
 
         .social .bx {
-            color: var(--font);
+            color: var(--second);
             font-size: 2rem;
         }
 
         .social .bx:hover {
-            color: var(--main);
+            color: black;
         }
     </style>
 </head>
 
 <body>
+    <?php
+    $y = "Berhasil Login !";
+    if (isset($_GET['pesan'])) {
+        if ($_GET['pesan'] == "y") {
+            echo "<script type='text/javascript'>alert('$y');</script>";
+            header("location:home.php");
+        }
+    }
+    ?>
     <header>
         <!-- Nav Bootstrap -->
         <nav class="navbar navbar-expand-lg navbar-light">
@@ -288,22 +304,19 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul class="navbar-nav" id="menu">
+                    <ul class="navbar-nav">
                         <li id="nav-item" class="nav-item">
                             <a class="nav-link" href="stok.php">Stok Management</a>
                         </li>
-                        <li id="nav-item" class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Laporan
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="laporan-transaksi.php">Laporan Transaksi</a></li>
-                                <li><a class="dropdown-item" href="lapor">Laporan Keuntungan</a></li>
-                            </ul>
+                        <li id="nav-item" class="nav-item">
+                            <a class="nav-link" href="laporan-transaksi.php">Laporan Transaksi</a>
+                        </li>
+                        <li id="nav-item" class="nav-item">
+                            <a class="nav-link" href="laporan-keuntungan.php">Laporan Keuntungan</a>
                         </li>
                     </ul>
                 </div>
-                <button class="login" type="button" class="btn btn-lg">
+                <button id="l" type="button" class="btn login btn-lg">
                     <a href="logout.php">Logout</a>
                 </button>
             </div>
@@ -313,12 +326,15 @@
     <!-- Home -->
     <section class="home">
         <div class="home-text container">
-            <img src="assets/img/logo_web.png" class="magist">
+            <img src="assets/img/loweb.png" class="magist">
         </div>
     </section>
-
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#47B1FF" fill-opacity="1" d="M0,224L40,218.7C80,213,160,203,240,202.7C320,203,400,213,480,192C560,171,640,117,720,106.7C800,96,880,128,960,138.7C1040,149,1120,139,1200,149.3C1280,160,1360,192,1400,208L1440,224L1440,0L1400,0C1360,0,1280,0,1200,0C1120,0,1040,0,960,0C880,0,800,0,720,0C640,0,560,0,480,0C400,0,320,0,240,0C160,0,80,0,40,0L0,0Z"></path>
+    </svg>
     <!-- Menu Utama -->
     <div class="menu-filter container">
+
         <span class="home-subtitle">Development By TreeAce Production </span>
     </div>
 
@@ -376,13 +392,17 @@
     </section>
 
     <!-- Footer -->
-    <div class="footer container">
-        <p>&copy; Copyright TreeAce X POLIJE Kampus Sidoarjo</p>
-        <div class="social">
-            <a href="https://www.facebook.com/Marzuki.AkmaLL"><i class='bx bxl-facebook-square'></i></a>
-            <a href="https://www.instagram.com/marzuki_akmal/"><i class='bx bxl-instagram-alt'></i></a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#47B1FF" fill-opacity="1" d="M0,160L48,154.7C96,149,192,139,288,117.3C384,96,480,64,576,80C672,96,768,160,864,165.3C960,171,1056,117,1152,96C1248,75,1344,85,1392,90.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        <div class="footer footer-container">
+            <p>&copy; Copyright TreeAce X POLIJE Kampus Sidoarjo</p>
+            <div class="social">
+                <a href="https://www.facebook.com/Marzuki.AkmaLL"><i class='bx bxl-facebook-square'></i></a>
+                <a href="https://www.instagram.com/marzuki_akmal/"><i class='bx bxl-instagram-alt'></i></a>
+            </div>
         </div>
-    </div>
+    </svg>
+
 
 
 
