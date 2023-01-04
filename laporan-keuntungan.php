@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- Icon -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&display=swap');
 
@@ -195,7 +197,7 @@
     ?>
     <header>
         <!-- Nav Bootstrap -->
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light" data-aos="fade-down" data-aos-duration="1000">
             <div id="nav" class="container container-fluid">
                 <a id="logo" class="navbar-brand" href="home.php">Akbar<span>Jaya</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -244,19 +246,20 @@
                                                         <!-- Ambil data tanggal dahulu -->
                                                         <?php foreach ($date as $key => $tgl) : ?>
                                                             <?php
-                                                            $data = $conn->query("SELECT SUM(`total_modal`), SUM(`grand_total`) FROM `tbl_transaksi` WHERE `tanggal` = '" . $tgl['tanggal'] . "';");
+                                                            $data = $conn->query("SELECT SUM(`total_modal`), SUM(`grand_total`)
+                                                                FROM `tbl_transaksi` WHERE `tanggal` = '" . $tgl['tanggal'] . "';");
                                                             ?>
                                                             <!-- Ambil Jumlah  -->
                                                             <?php foreach ($data as $key => $dt) : ?>
                                                                 <tr>
                                                                     <td><?= $tgl['tanggal'] ?></td>
-                                                                    <td><?= $dt['SUM(`total_modal`)'] ?></td>
-                                                                    <td><?= $dt['SUM(`grand_total`)'] ?></td>
+                                                                    <td>Rp. <?php echo number_format($dt['SUM(`total_modal`)'], 0, ",", "."); ?></td>
+                                                                    <td>Rp. <?php echo number_format($dt['SUM(`grand_total`)'], 0, ",", "."); ?></td>
                                                                     <td><?php
                                                                         $keuntungan = $dt['SUM(`grand_total`)'] - $dt['SUM(`total_modal`)'];
                                                                         $total_keuntungan += $keuntungan;
                                                                         ?>
-                                                                        <?= $keuntungan ?></td>
+                                                                        Rp. <?php echo number_format($keuntungan, 0, ",", ".") ?>
                                                                 </tr>
                                                             <?php endforeach; ?>
                                                         <?php endforeach ?>
@@ -298,6 +301,11 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <!-- Javascript -->
     <script src="assets/js/main.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

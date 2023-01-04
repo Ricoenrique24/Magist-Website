@@ -180,13 +180,15 @@
             background: #eee;
         }
     </style>
+    <!-- AOS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
 
     <header>
         <!-- Nav Bootstrap -->
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light" data-aos="fade-down" data-aos-duration="1000">
             <div id="nav" class="container container-fluid">
                 <a id="logo" class="navbar-brand" href="home.php">Akbar<span>Jaya</span></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,7 +242,9 @@
                                                             <tr>
                                                                 <td><?php echo $result['tanggal'] ?></td>
                                                                 <td><?php echo $result['nama_pembeli'] ?></td>
-                                                                <td><?php echo $result['bayar'] ?></td>
+                                                                <td>
+                                                                    Rp. <?php echo number_format($result['grand_total'], 0, ",", "."); ?>
+                                                                </td>
                                                                 <td><a href="detail.php?id_transaksi=<?= $result['id_transaksi'] ?>">Lihat Rincian</a></td>
                                                             </tr>
                                                         <?php
@@ -273,6 +277,11 @@
     <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
     <!-- Javascript -->
     <script src="assets/js/main.js"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>
