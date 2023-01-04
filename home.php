@@ -338,9 +338,9 @@ if (isset($_SESSION['id_user'])  && isset($_SESSION['username'])) {
     </head>
 
     <body>
-        <header>
+        <header data-aos="fade-down" data-aos-duration="1000">
             <!-- Nav Bootstrap -->
-            <nav class="navbar navbar-expand-lg navbar-light" data-aos="fade-down" data-aos-duration="1000">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <div id="nav" class="container container-fluid">
                     <a id="logo" class="navbar-brand" href="home.php">Akbar<span>Jaya</span></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
